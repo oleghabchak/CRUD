@@ -14,6 +14,8 @@ function App() {
         <div className="search-panel">
             <SearchPanel/>
             <AppFilter/>
+            <br/>
+            <AppFilter/>
         </div>
         
         <EmployeesList/>
