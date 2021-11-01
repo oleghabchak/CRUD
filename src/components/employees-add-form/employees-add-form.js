@@ -1,6 +1,7 @@
 import './employees-add-form.css';
 
 const EmployeesAddForm = () => {
+    let alert = console.log('gfhfghcfg');
     return (
         <div className="app-add-form">
             <h3>Додати нового працівника</h3>
@@ -14,6 +15,7 @@ const EmployeesAddForm = () => {
                     placeholder="З/П в $?" />
 
                 <button type="submit"
+                onClick={alert}
                         className="btn btn-outline-light">Добавити</button>
             </form>
         </div>
