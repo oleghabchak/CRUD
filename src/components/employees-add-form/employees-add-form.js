@@ -1,7 +1,7 @@
 import './employees-add-form.css';
 
 const EmployeesAddForm = () => {
-    let alert = console.log('gfhfghcfg');
+    
     return (
         <div className="app-add-form">
             <h3>Додати нового працівника</h3>
