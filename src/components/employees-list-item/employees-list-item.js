@@ -1,8 +1,25 @@
+import React, { Component } from 'react';
+
 import './employees-list-item.css';
 
-const EmployeesListItem = ({name, salary, increase}) => {
+class EmployeesListItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            increase: false
 
-    let classNames = "list-group-item d-flex justify-content-between";
+        }
+    }
+
+    onIncrease = () => {
+        this.setState(({increase}) => ({
+            increase: !increase
+        }))
+    }
+    render() {
+        const {name, salary} = this.props;
+        const {increase} = this.state;
+        let classNames = "list-group-item d-flex justify-content-between";
         if(increase) {
             classNames += " increase" ;
         }
@@ -13,7 +30,8 @@ const EmployeesListItem = ({name, salary, increase}) => {
             <input type="text" className="list-group-item-input" defaultValue={salary + "$"}/>
             <div className='d-flex justify-content-center align-items-center'>
                 <button type="button"
-                    className="btn-cookie btn-sm ">
+                    className="btn-cookie btn-sm "
+                    onClick={this.onIncrease}>
                     <i className="fas fa-cookie"></i>
                 </button>
 
@@ -25,6 +43,7 @@ const EmployeesListItem = ({name, salary, increase}) => {
             </div>
         </li>
     )
+    }
 }
 
 export default EmployeesListItem;
