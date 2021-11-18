@@ -18,6 +18,7 @@ constructor(props) {
       {name: "Marta Z.", salary:5500, increase: false, id:3} ,
     ]
   }
+  this.maxId = 4;
 }
 
 deleteItem = (id) => {
@@ -35,6 +36,21 @@ deleteItem = (id) => {
   })
 }
 
+addItem = (name, salary) => {
+  const newItem = {
+      name, 
+      salary,
+      increase: false,
+      id: this.maxId++
+  }
+  this.setState(({data}) => {
+      const newArr = [...data, newItem];
+      return {
+          data: newArr
+      }
+  });
+}
+
   render() {
   return (
     <div className="app">
@@ -49,7 +65,7 @@ deleteItem = (id) => {
         <EmployeesList 
         onDelete={this.deleteItem}
         data={this.state.data}/>
-        <EmployeesAddForm/>
+        <EmployeesAddForm onAddd={this.addItem}/>
     </div>
   );
 }
