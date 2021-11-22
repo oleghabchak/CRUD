@@ -13,14 +13,14 @@ constructor(props) {
   super(props);
   this.state = {
     data:  [
-      {name: "Oleg H.", salary:800, increase: false, id:1 },
-      {name: "Maria G.", salary:4800, increase: true, id:2 },
-      {name: "Marta Z.", salary:5500, increase: false, id:3} ,
+      {name: "Oleg H.", salary:800, increase: false, rise: true, id:1 },
+      {name: "Maria G.", salary:4800, increase: true, rise: false, id:2 },
+      {name: "Marta Z.", salary:5500, increase: false, rise: false, id:3} ,
     ]
   }
   this.maxId = 4;
 }
-
+// Add and remove employees
 deleteItem = (id) => {
   this.setState(({data}) => {
     const index = data.findIndex(e => e.id == id)
@@ -41,6 +41,7 @@ addItem = (name, salary) => {
       name, 
       salary,
       increase: false,
+      rise: false,
       id: this.maxId++
   }
   this.setState(({data}) => {
@@ -51,8 +52,16 @@ addItem = (name, salary) => {
   });
 }
 
+OnToggleIncrease = (id) => {
+  console.log(`Increase this ${id}`)
+}
+OnToggleRise = (id) => {
+  console.log(`Rise this ${id}`)
+}
+
+
   render() {
-  return (
+    return (
     <div className="app">
         <AppInfo />
 
@@ -64,7 +73,9 @@ addItem = (name, salary) => {
         
         <EmployeesList 
         onDelete={this.deleteItem}
-        data={this.state.data}/>
+        data={this.state.data}
+        OnToggleIncrease={this.OnToggleIncrease}
+        OnToggleRise={this.OnToggleRise}/>
         <EmployeesAddForm onAddd={this.addItem}/>
     </div>
   );
