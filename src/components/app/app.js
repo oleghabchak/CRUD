@@ -64,15 +64,23 @@ OnToggleIncrease = (id) => {
   }))
 }
 OnToggleRise = (id) => {
-  console.log(`Rise this ${id}`)
+  this.setState(({data}) =>({
+    data: data.map(item =>{
+      if (item.id === id){
+      return{...item, rise: !item.rise}
+      }
+      return item;
+    })
+  }))
 }
 
 
   render() {
     const emplNum = this.state.data.length;
+    const increased = this.state.data.filter(item => item.increase).length;
     return (
     <div className="app">
-        <AppInfo emplNum={emplNum}/>
+        <AppInfo emplNum={emplNum} increased={increased}/>
 
         <div className="search-panel">
             <SearchPanel/>
