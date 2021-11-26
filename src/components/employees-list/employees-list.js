@@ -16,8 +16,6 @@ const elements = data.map(item =>{
     )
 })
 
-console.log(elements)
-
     return (
         <ul className="app-list list-group">
             {elements}
