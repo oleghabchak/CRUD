@@ -84,6 +84,10 @@ searchEmp = (item, tern) => {
   })
 }
 
+updateSearch = (tern) => {
+  this.setState({tern})
+}
+
 
 
   render() {
@@ -96,7 +100,7 @@ searchEmp = (item, tern) => {
         <AppInfo emplNum={emplNum} increased={increased}/>
 
         <div className="search-panel">
-            <SearchPanel/>
+            <SearchPanel updateSearch={this.updateSearch}/>
             <AppFilter/>
             
         </div>
