@@ -16,8 +16,9 @@ constructor(props) {
       {name: "Oleg H.", salary:800, increase: false, rise: true, id:1 },
       {name: "Maria G.", salary:4800, increase: true, rise: false, id:2 },
       {name: "Marta Z.", salary:5500, increase: false, rise: false, id:3} ,
-    ]
+    ], tern: "a"
   }
+  
   this.maxId = 4;
 }
 // Add and remove employees
@@ -74,10 +75,22 @@ OnToggleRise = (id) => {
   }))
 }
 
+searchEmp = (item, tern) => {
+  if (item.length === 0) {
+    return item;
+  }
+  return item.filter(item => {
+    return item.name.indexOf(tern) > -1
+  })
+}
+
+
 
   render() {
+    const {data,tern} = this.state;
     const emplNum = this.state.data.length;
     const increased = this.state.data.filter(item => item.increase).length;
+    const visibleData = this.searchEmp(data, tern);
     return (
     <div className="app">
         <AppInfo emplNum={emplNum} increased={increased}/>
@@ -90,7 +103,7 @@ OnToggleRise = (id) => {
         
         <EmployeesList 
         onDelete={this.deleteItem}
-        data={this.state.data}
+        data={visibleData}
         OnToggleIncrease={this.OnToggleIncrease}
         OnToggleRise={this.OnToggleRise}/>
         <EmployeesAddForm onAddd={this.addItem}/>
