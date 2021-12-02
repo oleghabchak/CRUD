@@ -100,6 +100,9 @@ filterPost = (item ,filter) => {
   }
 }
 
+onFilterSelect = (filter) => {
+  this.setState({filter})
+}
 
 
   render() {
@@ -113,7 +116,7 @@ filterPost = (item ,filter) => {
 
         <div className="search-panel">
             <SearchPanel updateSearch={this.updateSearch}/>
-            <AppFilter/>
+            <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>
             
         </div>
         
