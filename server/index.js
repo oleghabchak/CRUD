@@ -23,11 +23,12 @@ mysqlConnection.connect(err => {
        
 });  
 
-let query ='SELECT * FROM cruddb.trains'
+let query ='SELECT * FROM cruddb.train'
     mysqlConnection.query(query,(err, result, field) => {
         console.log(err);
         console.log(result);
-        console.log(field);
+        
+        // console.log(field);
     })
 
 // app.listen(3001,()=> console.log('Express serwer is running at port: 3001'));
