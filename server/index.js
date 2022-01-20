@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
+const cors =require('cors')
 
 
 const db = mysql.createPool({
@@ -10,10 +11,25 @@ const db = mysql.createPool({
     password: "lao6247K",
     database:"cruddb",
 });
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+
+/*==================== GET ROUTE ====================*/
+
+app.get("/api/get", (req, res)=>{
+    const sqlSelect= "SELECT * FROM cruddb.train";
+    db.query(sqlSelect, (err,result)=>{
+        res.send(result);
+    });
+});
+
+
 
 app.get("/", (req, res) => { 
     const sqlInsert = 
-    " INSERT INTO cruddb.train ( id, city1, city2, departure, arrival) VALUES ('3','Lutsk','IF', '12:45', '20:54');";
+    " INSERT INTO cruddb.train ( id, city1, city2, departure, arrival) VALUES ('5','Lutsk','Kyiv', '15:45', '00:54');";
     db.query(sqlInsert, (err, result)=> {
         res.send("Hello  world!!!");
         console.log(err)
