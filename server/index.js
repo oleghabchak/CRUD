@@ -26,12 +26,15 @@ app.get("/api/get", (req, res)=>{
 });
 
 
-
-app.get("/", (req, res) => { 
+/*==================== POST ROUTE ====================*/
+app.post("/api/post", (req, res) => { 
+    const city1 = req.body.city1;
+    const city2 = req.body.city2;
+    const departure = req.body.departure;
+    const arrival = req.body.arrival;
     const sqlInsert = 
-    " INSERT INTO cruddb.train ( id, city1, city2, departure, arrival) VALUES ('5','Lutsk','Kyiv', '15:45', '00:54');";
-    db.query(sqlInsert, (err, result)=> {
-        res.send("Hello  world!!!");
+    " INSERT INTO cruddb.train ( id, city1, city2, departure, arrival) VALUES ('9',?,?,?,?);";
+    db.query(sqlInsert,[city1, city2, departure, arrival], (err, result)=> {
         console.log(err)
     });
 });
