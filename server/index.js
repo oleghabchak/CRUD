@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.get("/api/get", (req, res)=>{
     const sqlSelect= "SELECT * FROM cruddb.train";
     db.query(sqlSelect, (err,result)=>{
-        res.send(result);
+        res.send(result); 
     });
 });
 
@@ -35,7 +35,8 @@ app.post("/api/post", (req, res) => {
     const sqlInsert = 
     " INSERT INTO cruddb.train ( id, city1, city2, departure, arrival) VALUES ('9',?,?,?,?);";
     db.query(sqlInsert,[city1, city2, departure, arrival], (err, result)=> {
-        console.log(err)
+        res.send("Hello  world!!!");
+        console.log(result)
     });
 });
 

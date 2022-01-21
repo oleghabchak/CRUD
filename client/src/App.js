@@ -31,44 +31,52 @@ useEffect(()=>{
 
   return (
     <div className="App-header">
-      <h1>Add new Train</h1>
-        <div className="form">
-          <label>From</label>
-          <input 
+     
+        <div className="Add-train">
+          <h1>Add new Train</h1>
+    
+          <input
+          placeholder="From:"
           type="text"
           name='city1'
           onChange={(e)=>{setCity1(e.target.value)}}  />
-          <label>to</label>
-          <input 
+        
+          <input
+          placeholder="to:"
           type="text"
           name='city2'
           onChange={(e)=>{setCity2(e.target.value)}}  />
-          <label>departure time</label>
-          <input 
+          
+          
+          <input
+          placeholder="Departure time"
           type="text"
           name='departure'
           onChange={(e)=>{setDeparture(e.target.value)}}  />
-          <label>arrival time</label>
-          <input 
+          
+          
+          <input
+          placeholder="Arrival time"
           type="text"
           name='arrival'
           onChange={(e)=>{setArrival(e.target.value)}}  />
-          <button onClick={addTrain}>Submit</button>
+          <button className='btn-grad' onClick={addTrain}>Submit</button>
         </div>
 
 
-
-      <h1>Trains:</h1>
-        {trainsList.map((val,pos)=>{
-          return  (
-            <div key={pos}> 
-             <h5>From:  {val.city1} {val.departure} </h5>
-             <h6>to: {val.city2} {val.arrival} </h6>
-            </div>
-          );
-        })
-        }
-  
+        <div className='trains-list'>
+            <h1>Trains:</h1>
+              {trainsList.map((val,pos)=>{
+                while (val.city2 === "lviv") {
+                return  (
+                  <div key={pos}> 
+                      <h5>From:  {val.city1} {val.departure} to: {val.city2} {val.arrival} </h5>
+                  </div>
+                );
+              }
+              })
+              }
+        </div>
     </div>
   );
 }
