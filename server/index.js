@@ -36,9 +36,20 @@ app.post("/api/post", (req, res) => {
     " INSERT INTO cruddb.train ( id, city1, city2, departure, arrival) VALUES ('9',?,?,?,?);";
     db.query(sqlInsert,[city1, city2, departure, arrival], (err, result)=> {
         res.send("Hello  world!!!");
-        console.log(result)
+        // console.log(result)
     });
 });
+
+/*==================== DELETE ROUTE ====================*/
+app.delete("/api/delete/:city1", (req,res)=>{
+    const cityName = req.params.city1
+    const sqlDelete = "DELETE FROM cruddb.train WHERE city1 = ?";
+    db.query(sqlDelete, cityName, (err, result)=>{
+        if (err) console.log(err);
+    })
+
+
+})
 
 app.listen(3005, () => {
     

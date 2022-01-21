@@ -10,6 +10,13 @@ function App() {
   const [trainsList, setTrainsList] = useState([]);
 
 
+  useEffect(()=>{
+    Axios.get('http://localhost:3005/api/get').then((response)=>{
+      setTrainsList(response.data)
+      // console.log(response.data);
+    })
+  });
+
   const addTrain = () => {
     Axios.post('http://localhost:3005/api/post',{
       city1:city1, 
@@ -21,19 +28,17 @@ alert("successful POST into DB")
     })
   }
 
-useEffect(()=>{
-  Axios.get('http://localhost:3005/api/get').then((response)=>{
-    setTrainsList(response.data)
-    // console.log(response.data);
-  })
-});
+const deleteTrain = (arrival) => {
+  Axios.delete(`http://localhost:3005/api/delete/${arrival}`);
+};
 
-
+const a = "lviv"; 
   return (
     <div className="App-header">
-     
+      
         <div className="Add-train">
-          <h1>Add new Train</h1>
+          <h1>Search:</h1>
+          <h3>Add new Train</h3>
     
           <input
           placeholder="From:"
@@ -65,15 +70,18 @@ useEffect(()=>{
 
 
         <div className='trains-list'>
-            <h1>Trains:</h1>
+            <h1>Trains List:</h1>
               {trainsList.map((val,pos)=>{
-                while (val.city2 === "lviv") {
+                //  while (val.city1 == a)
+                {
                 return  (
-                  <div key={pos}> 
-                      <h5>From:  {val.city1} {val.departure} to: {val.city2} {val.arrival} </h5>
+                  <div className='train-item' key={pos}> 
+                      <h5>From: {val.city1.toUpperCase()}  {val.departure} &nbsp;&nbsp; 
+                        to: {val.city2.toUpperCase()}  {val.arrival} </h5>
+                      <button className='btn-delete'  onClick={()=> {deleteTrain(val.city1)}}>Delete</button>
                   </div>
                 );
-              }
+                }
               })
               }
         </div>

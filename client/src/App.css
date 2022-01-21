@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 .App-header {
@@ -24,6 +25,14 @@
   flex-direction: column;
   background: #000;
   width: 65vw;
+  padding: 35px;
+}
+.train-item{
+  display: flex;
+  justify-content: flex flex-start;
+  align-items: center;
+  flex-direction: row;
+  height: 70px;
 }
 
 .btn-grad {background-image: linear-gradient(to right, #283048 0%, #859398  51%, #283048  100%)}
@@ -44,7 +53,42 @@
   color: rgb(255, 255, 255);
   text-decoration: strong;
 }
+.btn-delete {
+    margin-left: 15px;
+    height: 13px;
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(255, 255, 255, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-weight: 800;
+    min-height: 40px;
+    outline: 0;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+
+  }
   
+  .btn-delete:hover,
+  .btn-delete:active {
+    background-color: #ffffff;
+    background-position: 0 0;
+    color: #FF4742;
+  }
+  
+  .btn-delete:active {
+    opacity: .5;
+  }
+
 input {
   font-family: 'Roboto', sans-serif;
   color: #333;
@@ -59,3 +103,4 @@ input {
   border-bottom: 0.3rem solid transparent;
   transition: all 0.3s;
 }
+
