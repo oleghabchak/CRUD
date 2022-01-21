@@ -32,13 +32,13 @@ const deleteTrain = (arrival) => {
   Axios.delete(`http://localhost:3005/api/delete/${arrival}`);
 };
 
-const a = "lviv"; 
+const [searchTerm, setSearchTerm] = useState(""); 
   return (
     <div className="App-header">
       
         <div className="Add-train">
-          <h1>Search:</h1>
-          <h3>Add new Train</h3>
+          
+          <h1>Add New Train</h1>
     
           <input
           placeholder="From:"
@@ -70,15 +70,37 @@ const a = "lviv";
 
 
         <div className='trains-list'>
-            <h1>Trains List:</h1>
-              {trainsList.map((val,pos)=>{
+          <h2>Search train:</h2>
+          <input 
+          onChange={(e)=>{
+            setSearchTerm(e.target.value)
+          }}
+          placeholder='From:'
+           type="text" />
+          <input
+          onChange={(e)=>{
+            setSearchTerm(e.target.value)
+          }}
+          placeholder='To:' 
+           type="text" />
+            <h2>Trains List:</h2>
+
+              {trainsList.filter((val)=> {
+                if (searchTerm == '') {
+                  return val
+                } else if( val.city1.toLowerCase().includes(searchTerm.toLowerCase())){
+                  return val
+                } else if( val.city2.toLowerCase().includes(searchTerm.toLowerCase())){
+                  return val
+                }
+              }).map((val,pos)=>{
                 //  while (val.city1 == a)
                 {
                 return  (
                   <div className='train-item' key={pos}> 
                       <h5>From: {val.city1.toUpperCase()}  {val.departure} &nbsp;&nbsp; 
                         to: {val.city2.toUpperCase()}  {val.arrival} </h5>
-                      <button className='btn-delete'  onClick={()=> {deleteTrain(val.city1)}}>Delete</button>
+                      <button className='btn-delete'  onClick={()=> {deleteTrain(val.arrival)}}>Delete</button>
                   </div>
                 );
                 }

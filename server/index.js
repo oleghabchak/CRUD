@@ -41,9 +41,9 @@ app.post("/api/post", (req, res) => {
 });
 
 /*==================== DELETE ROUTE ====================*/
-app.delete("/api/delete/:city1", (req,res)=>{
-    const cityName = req.params.city1
-    const sqlDelete = "DELETE FROM cruddb.train WHERE city1 = ?";
+app.delete("/api/delete/:arrival", (req,res)=>{
+    const cityName = req.params.arrival
+    const sqlDelete = "DELETE FROM cruddb.train WHERE arrival = ?";
     db.query(sqlDelete, cityName, (err, result)=>{
         if (err) console.log(err);
     })
