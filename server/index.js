@@ -6,10 +6,11 @@ const cors = require('cors')
 
 
 const db = mysql.createPool({
-    host:"localhost",
-    user: "root",
+    host:"109.94.209.66",
+    user: "admin6247k",
+    port: 3306,
     password: "lao6247K",
-    database:"cruddb",
+    database:"trainlist",
 });
 app.use(cors());
 app.use(express.json());
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 /*==================== GET ROUTE ====================*/
 
 app.get("/api/get", (req, res)=>{
-    const sqlSelect= "SELECT * FROM cruddb.train";
+    const sqlSelect= "SELECT * FROM list";
     db.query(sqlSelect, (err,result)=>{
         res.send(result); 
     });
@@ -33,7 +34,7 @@ app.post("/api/post", (req, res) => {
     const departure = req.body.departure;
     const arrival = req.body.arrival;
     const sqlInsert = 
-    " INSERT INTO cruddb.train ( id, city1, city2, departure, arrival) VALUES ('9',?,?,?,?);";
+    " INSERT INTO list ( id, city1, city2, departure, arrival) VALUES ('9',?,?,?,?);";
     db.query(sqlInsert,[city1, city2, departure, arrival], (err, result)=> {
         res.send("Hello  world!!!");
         // console.log(result)
@@ -43,7 +44,7 @@ app.post("/api/post", (req, res) => {
 /*==================== DELETE ROUTE ====================*/
 app.delete("/api/delete/:arrival", (req,res)=>{
     const cityName = req.params.arrival
-    const sqlDelete = "DELETE FROM cruddb.train WHERE arrival = ?";
+    const sqlDelete = "DELETE FROM list WHERE arrival = ?";
     db.query(sqlDelete, cityName, (err, result)=>{
         if (err) console.log(err);
     })
