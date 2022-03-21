@@ -13,7 +13,7 @@ function App() {
   useEffect(()=>{
     Axios.get('http://localhost:3005/api/get').then((response)=>{
       setTrainsList(response.data)
-      // console.log(response.data);
+      console.log(trainsList[1].city1);
     })
   });
 
@@ -24,7 +24,7 @@ function App() {
       departure:departure, 
       arrival:arrival})
     .then(()=>{
-alert("successful POST into DB")
+    alert("successful POST into DB")
     })
   }
 
