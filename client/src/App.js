@@ -33,6 +33,7 @@ const deleteTrain = (arrival) => {
 };
 
 const [searchTerm, setSearchTerm] = useState(""); 
+
   return (
     <div className="App-header">
       
